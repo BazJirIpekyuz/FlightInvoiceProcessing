@@ -1,0 +1,18 @@
+Season,Vt,FlightDate,CarrierCode,FlightNumber,Routing,NumberOfSoldSeats,PriceForEachSeat,TotalPrice,Reason,Message
+2324,5,01/12/2024,XQ,114,AYT CGN,2,126.00,252.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,7,01/14/2024,XQ,114,AYT CGN,5,116.00,580.00,DifferentPrice,Invoice and booking prices are different.
+2324,3,01/10/2024,XQ,121,ZRH AYT,2,76.00,152.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,7,01/14/2024,XQ,127,SCN AYT,2,56.00,112.00,DifferentNumberOfSoldSeats,Invoice and booking sold seat count are different.
+2324,5,01/12/2024,XQ,130,AYT MUC,1,126.00,126.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,3,01/10/2024,XQ,140,AYT FRA,4,176.00,704.00,DifferentNumberOfSoldSeats,Invoice and booking sold seat count are different.
+2324,4,01/04/2024,XQ,143,FRA AYT,4,76.00,304.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,3,01/10/2024,XQ,145,FRA AYT,1,56.00,56.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,1,01/08/2024,XQ,167,NUE AYT,3,56.00,168.00,DifferentNumberOfSoldSeats,Invoice and booking sold seat count are different.
+2324,6,01/13/2024,XQ,168,AYT NUE,3,76.00,228.00,DifferentNumberOfSoldSeats,Invoice and booking sold seat count are different.
+2324,6,01/13/2024,XQ,169,NUE AYT,1,56.00,56.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,2,01/09/2024,XQ,171,HAM AYT,2,56.00,112.00,DifferentNumberOfSoldSeats,Invoice and booking sold seat count are different.
+2324,2,01/09/2024,XQ,180,AYT DUS,2,176.00,352.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,4,01/11/2024,XQ,181,DUS AYT,4,66.00,264.00,DifferentNumberOfSoldSeats,Invoice and booking sold seat count are different.
+2324,6,01/13/2024,XQ,185,DUS AYT,2,76.00,152.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."
+2324,6,01/13/2024,XQ,191,VIE AYT,3,56.00,168.00,DifferentPrice,Invoice and booking prices are different.
+2324,6,01/13/2024,XQ,233,HAJ AYT,2,56.00,112.00,DuplicateInvoice,"We already got a booking's invoice, Airline invoices us twice."

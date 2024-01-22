@@ -23,7 +23,6 @@ namespace FlightInvoiceProcessing.WorkerService.Helpers
                 HasHeaderRecord = hasHeaderRecord
             };
 
-
             if (!Directory.Exists(_outputDirectory))
                 Directory.CreateDirectory(_outputDirectory);
 

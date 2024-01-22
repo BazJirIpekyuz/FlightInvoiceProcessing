@@ -33,20 +33,15 @@ namespace FlightInvoiceProcessing.WorkerService.BackgroundServices
                     using var scope = _serviceProvider.CreateScope();
 
                     var flightInvoiceProcessor = scope.ServiceProvider.GetRequiredService<IFlightInvoiceProcessor>();
+
+                    // Process invoice file.
                     var invoiceProcessingResult = await flightInvoiceProcessor.Process();
 
                     // Write data to a CSV file.
                     var csvFilePath = _dataToFileWriter.WriteToCsv(invoiceProcessingResult.InvalidRecordDetails);
 
-                    try
-                    {
-                        await SendInvoiceProcessingResultEmail(invoiceProcessingResult, csvFilePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, "An exception occurred while sending the " +
-                            "invoice processing result email.");
-                    }
+                    // Send data.
+                    await SendInvoiceProcessingResultEmail(invoiceProcessingResult, csvFilePath);
 
                     if (_logger.IsEnabled(LogLevel.Information))
                     {
@@ -64,24 +59,32 @@ namespace FlightInvoiceProcessing.WorkerService.BackgroundServices
 
         private async Task SendInvoiceProcessingResultEmail(InvoiceProcessingResult invoiceProcessingResult, string csvFilePath)
         {
-            var emailRecipients = _configuration
-                .GetSection("FlightInvoiceProcessingResultEmailRecipients")
-                .Get<List<EmailRecipient>>();
+            try
+            {
+                var emailRecipients = _configuration
+                    .GetSection("FlightInvoiceProcessingResultEmailRecipients")
+                    .Get<List<EmailRecipient>>();
 
-            string subject = invoiceProcessingResult.FlightInvoiceFileName + " invoice file processing result";
-            string content = $"Total processed records: {invoiceProcessingResult.TotalProcessedRecords}{Environment.NewLine}" +
-                         $"Total successful records: {invoiceProcessingResult.TotalSuccessfulRecords}" +
-                         $"Total invalid records: {invoiceProcessingResult.TotalInvalidRecords}";
+                string subject = invoiceProcessingResult.FlightInvoiceFileName + " invoice file processing result";
+                string content = $"Total processed records: {invoiceProcessingResult.TotalProcessedRecords}{Environment.NewLine}" +
+                             $"Total successful records: {invoiceProcessingResult.TotalSuccessfulRecords}" +
+                             $"Total invalid records: {invoiceProcessingResult.TotalInvalidRecords}";
 
-            using var scope = _serviceProvider.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
 
-            var mailService = scope.ServiceProvider.GetRequiredService<IMailService>();
+                var mailService = scope.ServiceProvider.GetRequiredService<IMailService>();
 
-            await mailService.Send(
-                emailRecipients,
-                subject,
-                content,
-                csvFilePath);
+                await mailService.Send(
+                    emailRecipients,
+                    subject,
+                    content,
+                    csvFilePath);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An exception occurred while sending the " +
+                    "invoice processing result email.");
+            }
         }
     }
 }

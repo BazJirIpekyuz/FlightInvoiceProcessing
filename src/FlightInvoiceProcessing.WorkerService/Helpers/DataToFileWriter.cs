@@ -1,7 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
-using System.IO;
 
 namespace FlightInvoiceProcessing.WorkerService.Helpers
 {
